@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">YambaAndroidTestJL</string>
+    <string name="title_status">Actualización de Estado</string>
+    <string name="button_tweet">Tweet</string>
+    <string name="hint_status">Por favor, introduce tu estado en
+140 caracteres</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
