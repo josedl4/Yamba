@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YambaAndroidTestJL</string>
+    <string name="title_status">Status Update</string>
+    <string name="button_tweet">Tweet</string>
+    <string name="hint_status">Please, enter your 140-character status</string>
+
+    <string name="operation_success"> Tweet successfully submitted</string>
+    <string name="operation_network_fail"> Connection failure</string>
+    <string name="operation_token_fail"> Access credentials wrong</string>
+    <string name="operation_unknown"> Error unknown</string>
+</resources>

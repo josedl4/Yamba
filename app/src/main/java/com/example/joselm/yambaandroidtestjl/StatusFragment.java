@@ -91,37 +91,59 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
 
 
     // Publicar en Twitter de manera asíncrona
-    private final class PostTask extends AsyncTask<String, Void, String> {
+    private final class PostTask extends AsyncTask<String, Void, OperationStatus> {
         // Llamada al empezar
         @Override
-        protected String doInBackground(String... params) {
+        protected OperationStatus doInBackground(String... params) {
             try {
                 twitter.updateStatus(params[0]);
-                return "Tweet enviado correctamente";
+                return OperationStatus.SUCCESS;
             } catch (TwitterException e) {
                 Log.e(TAG, "Error in the process");
                 e.printStackTrace();
 
-                if(e.isCausedByNetworkIssue()) {
-                    return "Error de Red";
-                }
-                if(e.getStatusCode() == UNAUTHORIZED) {
-                    Log.e(TAG, "Aqui llega");
-                    return "Error de Autenticación";
-                }
-                return "Error desconocido";
+                if(e.isCausedByNetworkIssue())
+                    return OperationStatus.NETWORK_FAIL;
+                else if(e.getStatusCode() == UNAUTHORIZED)
+                    return OperationStatus.TOKEN_FAIL;
+                else return OperationStatus.UNKNOWN;
             }
         }
+
         // Llamada cuando la actividad en background ha terminado
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(OperationStatus result) {
             super.onPostExecute(result);
 
             progressBar.setVisibility(View.GONE);
-            Snackbar.make(StatusFragment.this.getView(),
-                    result,
-                    Snackbar.LENGTH_LONG)
-                    .show();
+
+            switch (result){
+                case SUCCESS:
+                    Snackbar.make(StatusFragment.this.getView(),
+                            R.string.operation_success,
+                            Snackbar.LENGTH_LONG)
+                            .show();
+                    break;
+                case NETWORK_FAIL:
+                    Snackbar.make(StatusFragment.this.getView(),
+                            R.string.operation_network_fail,
+                            Snackbar.LENGTH_LONG)
+                            .show();
+                    break;
+                case TOKEN_FAIL:
+                    Snackbar.make(StatusFragment.this.getView(),
+                            R.string.operation_token_fail,
+                            Snackbar.LENGTH_LONG)
+                            .show();
+                    break;
+                default:
+                    Snackbar.make(StatusFragment.this.getView(),
+                            R.string.operation_unknown,
+                            Snackbar.LENGTH_LONG)
+                            .show();
+            }
+
+
         }
 
 
