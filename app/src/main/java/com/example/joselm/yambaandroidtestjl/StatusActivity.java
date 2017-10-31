@@ -1,11 +1,15 @@
+// Autores:
+// Martin Martin, Jose Luis
+// Martinez Arias, Miguel
 package com.example.joselm.yambaandroidtestjl;
 
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-
-
-public class StatusActivity extends AppCompatActivity{
+/**
+ * Activity principal que lanza StatusFragment
+ */
+public class StatusActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

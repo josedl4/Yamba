@@ -1,18 +1,21 @@
+// Autores:
+// Martin Martin, Jose Luis
+// Martinez Arias, Miguel
 package com.example.joselm.yambaandroidtestjl;
 
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Button;
-import android.util.Log;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,15 +26,17 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import static twitter4j.HttpResponseCode.UNAUTHORIZED;
 
-
-public class StatusFragment extends Fragment implements View.OnClickListener, TextWatcher{
+/**
+ * Fragment para la actualizacion de estado.
+ */
+public class StatusFragment extends Fragment implements View.OnClickListener, TextWatcher {
 
     private static final String TAG = "StatusFragment";
-    EditText editStatus;
-    Button buttonTweet;
-    Twitter twitter;
-    TextView textCount;
-    ProgressBar progressBar;
+    private EditText editStatus;
+    private Button buttonTweet;
+    private Twitter twitter;
+    private TextView textCount;
+    private ProgressBar progressBar;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup
             container, Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
 
+        // Configuracion de credenciales
         ConfigurationBuilder builder = new ConfigurationBuilder();
         builder.setOAuthConsumerKey("4v0x4Fqtkw5IPUlZdzcOTFhUN")
                 .setOAuthConsumerSecret("q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu")
@@ -64,8 +70,9 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
     public void onClick(View view) {
         String status = editStatus.getText().toString();
         Log.d(TAG, "onClicked");
-
-        new PostTask().execute(status);
+        if (textCount.getText().charAt(0) != '-') {
+            new PostTask().execute(status);
+        }
     }
 
     @Override
@@ -101,10 +108,9 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
             } catch (TwitterException e) {
                 Log.e(TAG, "Error in the process");
                 e.printStackTrace();
-
-                if(e.isCausedByNetworkIssue())
+                if (e.isCausedByNetworkIssue())
                     return OperationStatus.NETWORK_FAIL;
-                else if(e.getStatusCode() == UNAUTHORIZED)
+                else if (e.getStatusCode() == UNAUTHORIZED)
                     return OperationStatus.TOKEN_FAIL;
                 else return OperationStatus.UNKNOWN;
             }
@@ -117,45 +123,18 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
 
             progressBar.setVisibility(View.GONE);
 
-            switch (result){
-                case SUCCESS:
-                    Snackbar.make(StatusFragment.this.getView(),
-                            R.string.operation_success,
-                            Snackbar.LENGTH_LONG)
-                            .show();
-                    break;
-                case NETWORK_FAIL:
-                    Snackbar.make(StatusFragment.this.getView(),
-                            R.string.operation_network_fail,
-                            Snackbar.LENGTH_LONG)
-                            .show();
-                    break;
-                case TOKEN_FAIL:
-                    Snackbar.make(StatusFragment.this.getView(),
-                            R.string.operation_token_fail,
-                            Snackbar.LENGTH_LONG)
-                            .show();
-                    break;
-                default:
-                    Snackbar.make(StatusFragment.this.getView(),
-                            R.string.operation_unknown,
-                            Snackbar.LENGTH_LONG)
-                            .show();
-            }
-
-
+            if (result == OperationStatus.SUCCESS) editStatus.setText("");
+            Snackbar.make(StatusFragment.this.getView(), result.getTexto(), Snackbar.LENGTH_LONG).show();
         }
 
 
         protected void onProgressUpdate(Integer... progress) {
-
             progressBar.setProgress(progress[0]);
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressBar.setVisibility(View.VISIBLE);
         }
     }
