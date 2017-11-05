@@ -9,4 +9,8 @@
     <string name="operation_network_fail"> Fallo en la conexión</string>
     <string name="operation_token_fail"> Credenciales incorrectas</string>
     <string name="operation_unknown"> Error desconocido</string>
+    <string name="titleAccessToken">Access Token</string>
+    <string name="summaryAccessToken">Por favor, introduce tu Access Token</string>
+    <string name="titleAccessTokenSecret">Access Token Secret</string>
+    <string name="summaryAccessTokenSecret">Por favor, introduce tu Access Token Secret</string>
 </resources>
