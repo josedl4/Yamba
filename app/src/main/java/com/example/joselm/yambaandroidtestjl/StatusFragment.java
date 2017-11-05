@@ -4,11 +4,15 @@
 package com.example.joselm.yambaandroidtestjl;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,11 +41,13 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
     private Twitter twitter;
     private TextView textCount;
     private ProgressBar progressBar;
+    private SharedPreferences prefs;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup
             container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_status, container, false);
 
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         // Enlazar views
         editStatus = view.findViewById(R.id.editStatus);
         buttonTweet = view.findViewById(R.id.buttonTweet);
@@ -49,14 +55,16 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
 
+
         // Configuracion de credenciales
-        ConfigurationBuilder builder = new ConfigurationBuilder();
+
+        /*ConfigurationBuilder builder = new ConfigurationBuilder();
         builder.setOAuthConsumerKey("4v0x4Fqtkw5IPUlZdzcOTFhUN")
                 .setOAuthConsumerSecret("q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu")
                 .setOAuthAccessToken("918582870217838592-Bhf1Nk7Hpo9lV6qWPWYoh1smjhUfYRs")
                 .setOAuthAccessTokenSecret("BCDIEbgTpYNgtHzyWJrU7UY7AcP4iJrpm8Qt8z1dL3TsM");
         TwitterFactory factory = new TwitterFactory(builder.build());
-        twitter = factory.getInstance();
+        twitter = factory.getInstance();*/
 
         textCount = view.findViewById(R.id.textCount);
         textCount.setText(Integer.toString(140));
@@ -102,6 +110,23 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
         // Llamada al empezar
         @Override
         protected OperationStatus doInBackground(String... params) {
+
+            String accesstoken = prefs.getString("accesstoken", "");
+            String accesstokensecret = prefs.getString("accesstokensecret", "");
+            // Comprobar si el nombre de usuario o el password están vacíos.
+            // Si lo están, indicarlo mediante un Toast y redirigir al usuario a Settings
+            if (TextUtils.isEmpty(accesstoken) || TextUtils.isEmpty(accesstokensecret)) {
+                getActivity().startActivity(new Intent(getActivity(), SettingsActivity.class));
+                return OperationStatus.TOKEN_FAIL;
+            }
+            ConfigurationBuilder builder = new ConfigurationBuilder();
+            builder.setOAuthConsumerKey("4v0x4Fqtkw5IPUlZdzcOTFhUN")
+                    .setOAuthConsumerSecret("q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu")
+                            .setOAuthAccessToken(accesstoken)
+                            .setOAuthAccessTokenSecret(accesstokensecret);
+            TwitterFactory factory = new TwitterFactory(builder.build());
+            twitter = factory.getInstance();
+
             try {
                 twitter.updateStatus(params[0]);
                 return OperationStatus.SUCCESS;

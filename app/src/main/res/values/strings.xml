@@ -13,4 +13,7 @@
     <string name="summaryAccessToken">Por favor, introduce tu Access Token</string>
     <string name="titleAccessTokenSecret">Access Token Secret</string>
     <string name="summaryAccessTokenSecret">Por favor, introduce tu Access Token Secret</string>
+    <string name="purge">Eliminar</string>
+    <string name="tweet">Tweet</string>
+    <string name="action_settings">Ajustes</string>
 </resources>
