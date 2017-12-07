@@ -16,4 +16,6 @@
     <string name="purge">Eliminar</string>
     <string name="tweet">Tweet</string>
     <string name="action_settings">Ajustes</string>
+    <string name="titleServiceStart">Arrancar Servicio</string>
+    <string name="titleServiceStop">Detener servicio</string>
 </resources>
