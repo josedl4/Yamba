@@ -26,6 +26,11 @@
             android:name=".RefreshService"
             android:enabled="true"
             android:exported="true"></service>
+
+        <provider
+            android:authorities="com.example.joselm.yambaandroidtestjl.StatusProvider"
+            android:name="com.example.joselm.yambaandroidtestjl.StatusProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

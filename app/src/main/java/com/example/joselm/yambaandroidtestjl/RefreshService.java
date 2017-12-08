@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -64,7 +65,6 @@ public class RefreshService extends IntentService {
                 try {
                     List<Status> timeline = twitter.getHomeTimeline();
 
-                    db = dbHelper.getWritableDatabase();
                     ContentValues values = new ContentValues();
 
                     for(Status status : timeline) {
@@ -76,10 +76,9 @@ public class RefreshService extends IntentService {
                         values.put(StatusContract.Column.USER, status.getUser().getName());
                         values.put(StatusContract.Column.MESSAGE, status.getText());
                         values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
-                        db.insertWithOnConflict(StatusContract.TABLE, null, values,
-                                SQLiteDatabase.CONFLICT_IGNORE);
+
+                        Uri uri = getContentResolver().insert(StatusContract.CONTENT_URI, values);
                     }
-                    db.close();
                 } catch (TwitterException te) {
                     Log.e(TAG, "Failed to fetch the timeline", te);
                 }
