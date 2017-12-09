@@ -2,8 +2,9 @@
     <string name="app_name">YambaAndroidTestJL</string>
     <string name="title_status">Actualización de Estado</string>
     <string name="button_tweet">Tweet</string>
-    <string name="hint_status">Por favor, introduce tu estado en
-140 caracteres</string>
+    <string name="hint_status">Por favor, introduce tu estado en 140 caracteres</string>
+    <string name="costumer_key">4v0x4Fqtkw5IPUlZdzcOTFhUN</string>
+    <string name="costumer_secret">q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu</string>
 
     <string name="operation_success"> Tweet enviado correctamente</string>
     <string name="operation_network_fail"> Fallo en la conexión</string>
@@ -18,4 +19,6 @@
     <string name="action_settings">Ajustes</string>
     <string name="titleServiceStart">Arrancar Servicio</string>
     <string name="titleServiceStop">Detener servicio</string>
+    <string name="dataNotFound">Sin datos ...</string>
+    <string name="rowsOfDataDeleted">filas de la base de datos borradas</string>
 </resources>

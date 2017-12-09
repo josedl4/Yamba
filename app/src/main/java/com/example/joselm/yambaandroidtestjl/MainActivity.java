@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_purge:
                 int rows = getContentResolver().delete(StatusContract.CONTENT_URI, null,null);
-                Toast.makeText(this, rows + "filas de la base de datos borradas",
+                Toast.makeText(this, rows + " " + getString(R.string.rowsOfDataDeleted),
                         Toast.LENGTH_LONG).show();
                 return true;
             default:

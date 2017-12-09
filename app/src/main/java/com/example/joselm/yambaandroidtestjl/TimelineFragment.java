@@ -28,7 +28,7 @@ public class TimelineFragment extends ListFragment implements LoaderManager.Load
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setEmptyText("Sin datos...");
+        setEmptyText(getString(R.string.dataNotFound));
 
         mAdapter = new SimpleCursorAdapter(getActivity(), R.layout.list_item, null, FROM, TO, 0);
         setListAdapter(mAdapter);

@@ -120,8 +120,8 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
                 return OperationStatus.TOKEN_FAIL;
             }
             ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.setOAuthConsumerKey("4v0x4Fqtkw5IPUlZdzcOTFhUN")
-                    .setOAuthConsumerSecret("q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu")
+            builder.setOAuthConsumerKey(getString(R.string.costumer_key))
+                    .setOAuthConsumerSecret(getString(R.string.costumer_secret))
                             .setOAuthAccessToken(accesstoken)
                             .setOAuthAccessTokenSecret(accesstokensecret);
             TwitterFactory factory = new TwitterFactory(builder.build());

@@ -4,6 +4,8 @@
     <string name="title_status">Status Update</string>
     <string name="button_tweet">Tweet</string>
     <string name="hint_status">Please, enter your 140-character status</string>
+    <string name="costumer_key">4v0x4Fqtkw5IPUlZdzcOTFhUN</string>
+    <string name="costumer_secret">q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu</string>
 
     <string name="operation_success"> Tweet successfully submitted</string>
     <string name="operation_network_fail"> Connection failure</string>
@@ -18,4 +20,6 @@
     <string name="tweet">Tweet</string>
     <string name="titleServiceStart">Start Service</string>
     <string name="titleServiceStop">Stop Service</string>
+    <string name="dataNotFound">Data not found</string>
+    <string name="rowsOfDataDeleted">rows of data deleted</string>
 </resources>

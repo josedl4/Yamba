@@ -55,8 +55,8 @@ public class RefreshService extends IntentService {
 
             try {
                 ConfigurationBuilder builder = new ConfigurationBuilder();
-                builder.setOAuthConsumerKey("")
-                        .setOAuthConsumerSecret("")
+                builder.setOAuthConsumerKey(getString(R.string.costumer_key))
+                        .setOAuthConsumerSecret(getString(R.string.costumer_secret))
                         .setOAuthAccessToken(accesstoken)
                         .setOAuthAccessTokenSecret(accesstokensecret);
                 TwitterFactory factory = new TwitterFactory(builder.build());
