@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by joselm on 8/12/17.
- */
 
+/**
+ * Clase que proporciona conexion a la base de datos SQLite.
+ */
 public class DbHelper extends SQLiteOpenHelper {
 
     public static final String TAG = DbHelper.class.getSimpleName();

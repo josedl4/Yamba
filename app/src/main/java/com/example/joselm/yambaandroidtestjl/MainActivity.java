@@ -21,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Determina la accion a realizar dependiendo de la
+     * opcion del menu seleccionada.
+     *
+     * @param item elemento del menu seleccionado
+     * @return true si se ha realizado una accion, false en caso contrario
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:

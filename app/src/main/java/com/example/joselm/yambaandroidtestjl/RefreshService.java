@@ -17,7 +17,11 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+/**
+ * Servicio que actualiza el timeline.
+ */
 public class RefreshService extends IntentService {
+
     static final String TAG = RefreshService.class.getSimpleName();
 
     static final int DELAY = 30000;
@@ -44,16 +48,19 @@ public class RefreshService extends IntentService {
 
         this.runFlag = true;
 
+        // Recogemos las preferencias compartidas para la autenticacion
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String accesstoken = prefs.getString("accesstoken", "");
         String accesstokensecret = prefs.getString("accesstokensecret", "");
 
+        // Repetimos la actualizacion hasta que no se pare el servicio
         List<Status> timeline;
         Uri uri;
         while (runFlag) {
             Log.d(TAG, "Updater running");
 
             try {
+                // Autenticacion
                 ConfigurationBuilder builder = new ConfigurationBuilder();
                 builder.setOAuthConsumerKey(getString(R.string.costumer_key))
                         .setOAuthConsumerSecret(getString(R.string.costumer_secret))
@@ -65,6 +72,7 @@ public class RefreshService extends IntentService {
                 try {
                     timeline = twitter.getHomeTimeline();
 
+                    // Se recorre los status del timeline
                     ContentValues values = new ContentValues();
                     for (Status status : timeline) {
                         // Imprimimos las actualizaciones en el log

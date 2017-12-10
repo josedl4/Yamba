@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StatusActivity"/>
-        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".StatusActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
         <service
             android:name=".RefreshService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <provider
             android:authorities="com.example.joselm.yambaandroidtestjl.StatusProvider"
             android:name="com.example.joselm.yambaandroidtestjl.StatusProvider"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

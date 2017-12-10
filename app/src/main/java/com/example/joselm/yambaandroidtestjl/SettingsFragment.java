@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
+/**
+ * Fragment de las Settings.
+ */
 public class SettingsFragment extends PreferenceFragment {
     private SharedPreferences prefs;
 

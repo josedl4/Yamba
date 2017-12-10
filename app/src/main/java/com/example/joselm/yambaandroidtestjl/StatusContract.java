@@ -3,6 +3,10 @@ package com.example.joselm.yambaandroidtestjl;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
+/**
+ * Clase utilizada para almacenar las constantes que
+ * usa DbHelper.
+ */
 public class StatusContract {
     public static final String DB_NAME = "timeline.db";
     public static final int DB_VERSION = 1;

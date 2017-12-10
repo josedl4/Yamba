@@ -12,7 +12,9 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-
+/**
+ * ContentProvider interno a la aplicacion.
+ */
 public class StatusProvider extends ContentProvider {
 
     private static final String TAG = StatusProvider.class.getSimpleName();

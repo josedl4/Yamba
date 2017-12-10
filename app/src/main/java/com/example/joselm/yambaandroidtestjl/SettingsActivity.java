@@ -4,7 +4,11 @@ package com.example.joselm.yambaandroidtestjl;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * Actividad que contiene el fragment de Settings
+ */
 public class SettingsActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,4 +23,5 @@ public class SettingsActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
 }
