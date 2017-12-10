@@ -11,7 +11,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="Usuario"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/list_item_text_created_at"
@@ -21,7 +23,8 @@
         android:layout_alignBottom="@+id/list_item_text_user"
         android:layout_alignParentRight="true"
         android:text="Hace 10 minutos"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="italic"/>
 
     <TextView
         android:id="@+id/list_item_text_message"
@@ -30,5 +33,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/list_item_text_created_at"
         android:text="Tweet."
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/colorPrimaryDark"/>
 </RelativeLayout>

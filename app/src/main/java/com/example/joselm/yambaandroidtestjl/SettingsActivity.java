@@ -1,3 +1,6 @@
+// Autores:
+// Martin Martin, Jose Luis
+// Martinez Arias, Miguel
 package com.example.joselm.yambaandroidtestjl;
 
 
