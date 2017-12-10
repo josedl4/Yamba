@@ -1,13 +1,11 @@
 package com.example.joselm.yambaandroidtestjl;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -20,7 +18,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class RefreshService extends IntentService {
-    static final String TAG = "RefreshService";
+    static final String TAG = RefreshService.class.getSimpleName();
 
     static final int DELAY = 30000;
     private boolean runFlag = false;
@@ -50,7 +48,9 @@ public class RefreshService extends IntentService {
         String accesstoken = prefs.getString("accesstoken", "");
         String accesstokensecret = prefs.getString("accesstokensecret", "");
 
-        while(runFlag) {
+        List<Status> timeline;
+        Uri uri;
+        while (runFlag) {
             Log.d(TAG, "Updater running");
 
             try {
@@ -63,21 +63,22 @@ public class RefreshService extends IntentService {
                 Twitter twitter = factory.getInstance();
 
                 try {
-                    List<Status> timeline = twitter.getHomeTimeline();
+                    timeline = twitter.getHomeTimeline();
 
                     ContentValues values = new ContentValues();
-
-                    for(Status status : timeline) {
+                    for (Status status : timeline) {
+                        // Imprimimos las actualizaciones en el log
                         Log.d(TAG, String.format("%s: %s", status.getUser().getName(),
                                 status.getText()));
 
+                        // Insertar en la base de datos
                         values.clear();
                         values.put(StatusContract.Column.ID, status.getId());
                         values.put(StatusContract.Column.USER, status.getUser().getName());
                         values.put(StatusContract.Column.MESSAGE, status.getText());
                         values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
 
-                        Uri uri = getContentResolver().insert(StatusContract.CONTENT_URI, values);
+                        uri = getContentResolver().insert(StatusContract.CONTENT_URI, values);
                     }
                 } catch (TwitterException te) {
                     Log.e(TAG, "Failed to fetch the timeline", te);
@@ -97,6 +98,6 @@ public class RefreshService extends IntentService {
 
         this.runFlag = false;
 
-        Log.d(TAG,"onDestroyed");
+        Log.d(TAG, "onDestroyed");
     }
 }

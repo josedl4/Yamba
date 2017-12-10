@@ -18,6 +18,7 @@ public class StatusProvider extends ContentProvider {
     private static final String TAG = StatusProvider.class.getSimpleName();
     private DbHelper dbHelper;
     private static final UriMatcher sURIMatcher;
+
     static {
         sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sURIMatcher.addURI(StatusContract.AUTHORITY, StatusContract.TABLE,
@@ -82,14 +83,14 @@ public class StatusProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
         Uri ret = null;
 
-        if(sURIMatcher.match(uri) != StatusContract.STATUS_DIR) {
+        if (sURIMatcher.match(uri) != StatusContract.STATUS_DIR) {
             throw new IllegalArgumentException("uri incorrecta: " + uri);
         }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long rowId = db.insertWithOnConflict(StatusContract.TABLE, null,
                 contentValues, SQLiteDatabase.CONFLICT_IGNORE);
-        if(rowId != -1) {
+        if (rowId != -1) {
             long id = contentValues.getAsLong(StatusContract.Column.ID);
             ret = ContentUris.withAppendedId(uri, id);
             Log.d(TAG, "uri insertada: " + ret);
@@ -118,7 +119,7 @@ public class StatusProvider extends ContentProvider {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int ret = db.delete(StatusContract.TABLE, where, strings);
-        if(ret > 0) getContext().getContentResolver().notifyChange(uri, null);
+        if (ret > 0) getContext().getContentResolver().notifyChange(uri, null);
 
         Log.d(TAG, "registros borrados: " + ret);
         return ret;
@@ -143,7 +144,7 @@ public class StatusProvider extends ContentProvider {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         int ret = db.update(StatusContract.TABLE, contentValues, where, strings);
-        if(ret > 0) getContext().getContentResolver().notifyChange(uri, null);
+        if (ret > 0) getContext().getContentResolver().notifyChange(uri, null);
 
         Log.d(TAG, "registros actualizados: " + ret);
         return ret;

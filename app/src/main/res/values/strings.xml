@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YambaAndroidTestJL</string>
+    <string name="app_name">YambaAndroidTest</string>
     <string name="title_status">Actualización de Estado</string>
     <string name="button_tweet">Tweet</string>
     <string name="hint_status">Por favor, introduce tu estado en 140 caracteres</string>
@@ -19,6 +19,6 @@
     <string name="action_settings">Ajustes</string>
     <string name="titleServiceStart">Arrancar Servicio</string>
     <string name="titleServiceStop">Detener servicio</string>
-    <string name="dataNotFound">Sin datos ...</string>
-    <string name="rowsOfDataDeleted">filas de la base de datos borradas</string>
+    <string name="dataNotFound">Sin datos...</string>
+    <string name="rowsOfDataDeleted"> filas de la base de datos borradas</string>
 </resources>

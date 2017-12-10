@@ -35,7 +35,7 @@ import static twitter4j.HttpResponseCode.UNAUTHORIZED;
  */
 public class StatusFragment extends Fragment implements View.OnClickListener, TextWatcher {
 
-    private static final String TAG = "StatusFragment";
+    private static final String TAG = StatusFragment.class.getSimpleName();
     private EditText editStatus;
     private Button buttonTweet;
     private Twitter twitter;
@@ -54,17 +54,6 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
         buttonTweet.setOnClickListener(this);
         progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
-
-
-        // Configuracion de credenciales
-
-        /*ConfigurationBuilder builder = new ConfigurationBuilder();
-        builder.setOAuthConsumerKey("4v0x4Fqtkw5IPUlZdzcOTFhUN")
-                .setOAuthConsumerSecret("q82M0t96q5aQF9teaBHm7cnsTOzOFDQwIHgoRlqKK55hHdqkTu")
-                .setOAuthAccessToken("918582870217838592-Bhf1Nk7Hpo9lV6qWPWYoh1smjhUfYRs")
-                .setOAuthAccessTokenSecret("BCDIEbgTpYNgtHzyWJrU7UY7AcP4iJrpm8Qt8z1dL3TsM");
-        TwitterFactory factory = new TwitterFactory(builder.build());
-        twitter = factory.getInstance();*/
 
         textCount = view.findViewById(R.id.textCount);
         textCount.setText(Integer.toString(140));
@@ -122,8 +111,8 @@ public class StatusFragment extends Fragment implements View.OnClickListener, Te
             ConfigurationBuilder builder = new ConfigurationBuilder();
             builder.setOAuthConsumerKey(getString(R.string.costumer_key))
                     .setOAuthConsumerSecret(getString(R.string.costumer_secret))
-                            .setOAuthAccessToken(accesstoken)
-                            .setOAuthAccessTokenSecret(accesstokensecret);
+                    .setOAuthAccessToken(accesstoken)
+                    .setOAuthAccessTokenSecret(accesstokensecret);
             TwitterFactory factory = new TwitterFactory(builder.build());
             twitter = factory.getInstance();
 

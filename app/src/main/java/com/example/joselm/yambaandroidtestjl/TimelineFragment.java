@@ -12,16 +12,20 @@ import android.view.View;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class TimelineFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class TimelineFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = TimelineFragment.class.getSimpleName();
 
     private SimpleCursorAdapter mAdapter;
 
-    private static final String[] FROM = {StatusContract.Column.USER, StatusContract.Column.MESSAGE,
-        StatusContract.Column.CREATED_AT};
-    private static final int[] TO = {R.id.list_item_text_user, R.id.list_item_text_message,
-        R.id.list_item_text_created_at};
+    private static final String[] FROM = {
+            StatusContract.Column.USER,
+            StatusContract.Column.MESSAGE,
+            StatusContract.Column.CREATED_AT};
+    private static final int[] TO = {
+            R.id.list_item_text_user,
+            R.id.list_item_text_message,
+            R.id.list_item_text_created_at};
 
     private static final int LOADER_ID = 42;
 
@@ -40,7 +44,7 @@ public class TimelineFragment extends ListFragment implements LoaderManager.Load
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        if(i != LOADER_ID) return null;
+        if (i != LOADER_ID) return null;
         Log.d(TAG, "onCreateLoader");
         return new CursorLoader(getActivity(), StatusContract.CONTENT_URI, null,
                 null, null, StatusContract.DEFAULT_SORT);
@@ -57,12 +61,16 @@ public class TimelineFragment extends ListFragment implements LoaderManager.Load
         mAdapter.swapCursor(null);
     }
 
-
+    /**
+     * Clase interna que implementa ViewBinder utilizada para realizar la
+     * conversion del tiempo del status.
+     */
     class TimelineViewBinder implements SimpleCursorAdapter.ViewBinder {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-            if(view.getId() != R.id.list_item_text_created_at) return false;
+            if (view.getId() != R.id.list_item_text_created_at) return false;
 
+            // Convertimos el timestamp a tiempo relativo
             long timestamp = cursor.getLong(columnIndex);
             CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(timestamp);
             ((TextView) view).setText(relativeTime);
