@@ -3,15 +3,15 @@
 // Martinez Arias, Miguel
 package com.example.joselm.yambaandroidtestjl;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,6 +64,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, rows + " " + getString(R.string.rowsOfDataDeleted),
                         Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.itemAbout: {
+                AlertDialog.Builder ventana = new AlertDialog.Builder(this);
+                ventana.setTitle(getResources().getString(R.string.aboutTitle));
+                ventana.setMessage(getResources().getString(
+                        R.string.aboutDescription));
+                ventana.setIcon(android.R.drawable.ic_menu_info_details);
+                ventana.setPositiveButton(
+                        getResources().getString(R.string.bAceptar),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                            }
+                        });
+                ventana.show();
+                return true;
+            }
             default:
                 return false;
         }

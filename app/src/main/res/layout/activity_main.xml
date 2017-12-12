@@ -15,10 +15,11 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatbutton"
-        android:layout_width="50dp"
-        android:layout_height="57dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_edit"
         app:backgroundTint="@color/colorPrimary"

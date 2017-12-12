@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YambaAndroidTest</string>
+    <string name="app_name">YambaAndroid</string>
     <string name="title_status">Actualización de Estado</string>
     <string name="button_tweet">Tweet</string>
     <string name="hint_status">Por favor, introduce tu estado en 140 caracteres</string>
@@ -15,10 +15,14 @@
     <string name="titleAccessTokenSecret">Access Token Secret</string>
     <string name="summaryAccessTokenSecret">Por favor, introduce tu Access Token Secret</string>
     <string name="purge">Eliminar</string>
+    <string name="about">Acerca</string>
     <string name="tweet">Tweet</string>
     <string name="action_settings">Ajustes</string>
     <string name="titleServiceStart">Arrancar Servicio</string>
     <string name="titleServiceStop">Detener servicio</string>
     <string name="dataNotFound">Sin datos...</string>
     <string name="rowsOfDataDeleted"> filas de la base de datos borradas</string>
+    <string name="aboutTitle">Acerca de</string>
+    <string name="aboutDescription">Aplicación realizada en la asignatura de Sistemas Moviles de Ingeniería Informática en la Universidad de Valladolid (UVa).\n\nAutores:\nMartin Martin, Jose Luis\nMartinez Arias, Miguel\n12/2017\n</string>
+    <string name="bAceptar">Aceptar</string>
 </resources>

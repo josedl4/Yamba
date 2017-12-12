@@ -34,5 +34,5 @@
         android:layout_below="@+id/list_item_text_created_at"
         android:text="Tweet."
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorBlack"/>
 </RelativeLayout>
