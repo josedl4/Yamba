@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.joselm.yambaandroidtestjl.MainActivity">
+    tools:context="com.example.joselm.yambaandroidtestjl.MainActivity"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <fragment
         android:layout_width="match_parent"
@@ -19,7 +21,7 @@
         android:layout_height="60dp"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="5dp"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_edit"
         app:backgroundTint="@color/colorPrimary"
